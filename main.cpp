@@ -67,35 +67,18 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			break;
 		case game:
 
-			if (Collision(enemy->Getpos(), player->bullet->Getpos(), enemy->Getradius(), player->bullet->Getradius()) == 1) {
+			if (Collision(enemy->Getpos(), player->bullet->Getpos(), enemy->Getradius(), player->bullet->Getradius())) {
 				enemy->SetisAlive(0);
 			}
-			else {
-				enemy->SetisAlive(1);
-			}
-
-			if (enemy->SetisAlive(1) == 0) {
-				enemy->Settimer(0);
-
-			}
-			
-			if (enemy->Settimer(0) > 100) {
-				enemy->SetisAlive(1);
-
-			}
-			
-			//セッター
-
-
-
-
-
-
-			if (Collision(enemy->Getpos(), player->Getpos(), enemy->Getradius(), player->Getradius()) == 1) {
+				enemy->OnCollision();
+			if (Collision(enemy->Getpos(), player->Getpos(), enemy->Getradius(), player->Getradius())) {
 				scene = go;
 
-			}
 
+			}
+			if (enemy->SetHp(0)) {
+				scene = gc;
+			}
 
 
 
@@ -113,11 +96,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 
 
-			if (enemy->SetisAlive(0) == 0) {
 			enemy->Draw();
-			}
+
 			player->Draw();
-			Novice::ScreenPrintf(0, 0, "timer%d", enemy->Gettimer());
+			Novice::ScreenPrintf(0, 0, "timerHp%d", enemy->SetHp(3));
 			Novice::ScreenPrintf(0, 50, "isAlive%d", enemy->GetisAlive());
 			break;
 		case go:
