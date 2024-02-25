@@ -4,8 +4,8 @@
 class Player
 {private:
 	Tranceform tranceform;
-	float radius_;
-	float speed_;
+	int radius_;
+	int speed_;
 public:
 	Bullet *bullet;
 	Player();

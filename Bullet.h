@@ -5,8 +5,8 @@ class Bullet
 {
 private:
 	Tranceform bulletpos_;
-	float radius_ ;
-	float speed_;
+	int radius_ ;
+	int speed_;
 	
 	
 public:

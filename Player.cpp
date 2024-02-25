@@ -42,5 +42,5 @@ void Player::Draw()
 {
 	bullet->Draw();
 	
-	Novice::DrawBox((int)tranceform.x,(int) tranceform.y, (int)radius_,(int) radius_,0.0f, 0xffff00ff, kFillModeSolid);
+	Novice::DrawBox(tranceform.x, tranceform.y, radius_, radius_,0.0f, 0xffff00ff, kFillModeSolid);
 }

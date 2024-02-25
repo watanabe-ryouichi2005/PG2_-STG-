@@ -32,7 +32,7 @@ void Bullet::Update()
 void Bullet::Draw()
 {
 	if (isBullet == 1) {
-		Novice::DrawBox((int)bulletpos_.x, (int)bulletpos_.y, (int)radius_, (int)radius_, 0.0f, 0xffff00ff, kFillModeSolid);
+		Novice::DrawBox(bulletpos_.x, bulletpos_.y, radius_, radius_, 0.0f, 0xffff00ff, kFillModeSolid);
 
 	}
 
