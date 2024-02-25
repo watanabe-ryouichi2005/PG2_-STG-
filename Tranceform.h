@@ -4,3 +4,8 @@ typedef struct Tranceform {
 	int y;
 
 }Tranceform;
+enum Scene
+{
+	title, game, go, gc
+
+};

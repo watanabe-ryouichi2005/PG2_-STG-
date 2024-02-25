@@ -24,18 +24,13 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	char preKeys[256] = { 0 };
 
 	Player* player = new Player;
-
+	//Bullet* bullet = new Bullet;
 	Enemy* enemy = new Enemy;
 	//Enemy* enemy_ = new Enemy;
 	enemy->initalize();
 	//enemy->SetisAlive(0);
 	//enemy->Settimer(0);
 	//enemy->Settimer(100);
-	enum Scene
-	{
-		title, game, go, gc
-
-	};
 	Scene scene = title;
 
 
@@ -54,9 +49,12 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		switch (scene)
 		{
 		case title:
-			/*enemy->initalize();
-			player->~Player();*/
-
+			player->Setpos({ 500,550 });
+			enemy->Setpos({ 640,150 });
+			enemy->SetHp(3);
+			player->tmpisshot = 0;
+			player->bullet->Setballet(player->tmpisshot);
+			
 			Novice::DrawBox(0, 0, 1280, 720, 0.0f, 0xffff00ff, kFillModeSolid);
 			if (keys[DIK_RETURN]) {
 				scene = game;
@@ -70,15 +68,15 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			if (Collision(enemy->Getpos(), player->bullet->Getpos(), enemy->Getradius(), player->bullet->Getradius())) {
 				enemy->SetisAlive(0);
 			}
-				enemy->OnCollision();
+				enemy->OnCollision(scene);
 			if (Collision(enemy->Getpos(), player->Getpos(), enemy->Getradius(), player->Getradius())) {
 				scene = go;
 
 
 			}
-			if (enemy->SetHp(0)) {
+			/*if (enemy->SetHp(0)) {
 				scene = gc;
-			}
+			}*/
 
 
 
@@ -99,7 +97,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			enemy->Draw();
 
 			player->Draw();
-			Novice::ScreenPrintf(0, 0, "timerHp%d", enemy->SetHp(3));
+			//Novice::ScreenPrintf(0, 0, "timerHp%d", enemy->SetHp(3));
 			Novice::ScreenPrintf(0, 50, "isAlive%d", enemy->GetisAlive());
 			break;
 		case go:
@@ -112,14 +110,18 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			}
 			break;
 		case gc:
+			Novice::ScreenPrintf(0, 0, "PushToEnter");
+			Novice::DrawBox(0, 0, 1280, 720, 0.0f, BLUE, kFillModeSolid);
+			if (keys[DIK_RETURN]) {
+				scene = title;
+				
 
-
-
+			}
 
 
 			break;
-		default:
-			break;
+		
+			
 		}
 		///
 		/// ↑更新処理ここまで

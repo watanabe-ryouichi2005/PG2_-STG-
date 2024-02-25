@@ -7,10 +7,10 @@ private:
 	Tranceform bulletpos_;
 	int radius_ ;
 	int speed_;
+	int isBullet_;
 	
 	
 public:
-	int isBullet;
 	Bullet();
 	~Bullet();
 	void Update();
@@ -19,6 +19,8 @@ public:
 	Tranceform Getpos() { return bulletpos_; };
 	void Setpos(Tranceform bulletpos) { this->bulletpos_ = bulletpos; };
 	int Getradius() { return radius_; };
+	int Getballet() { return isBullet_; };
+	int Setballet(int isBullet) {return this->isBullet_ = isBullet; };
 
 };
 

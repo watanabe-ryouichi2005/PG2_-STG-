@@ -4,7 +4,7 @@ Player::Player()
 {
 	
 	tranceform.x = 500;
-	tranceform.y = 700;
+	tranceform.y = 550;
 	speed_ = 5;
 	radius_ = 50;
 	bullet = new Bullet();
@@ -20,6 +20,7 @@ void Player::Update(char *keys,char *preKeys)
 {
 
 	Tranceform tempPlayerpos = Getpos();
+	 tmpisshot = bullet->Getballet();
 
 	if (keys[DIK_W]) {
 		tranceform.y -= speed_;
@@ -30,9 +31,11 @@ void Player::Update(char *keys,char *preKeys)
 	}if (keys[DIK_A]) {
 		tranceform.x -= speed_;
 	}
-	if (keys[DIK_SPACE] && !preKeys[DIK_SPACE]&&bullet->isBullet==0) {
-		bullet->isBullet = 1;
+	if (keys[DIK_SPACE] && !preKeys[DIK_SPACE]&&bullet->Setballet(tmpisshot) == 0) {
+		tmpisshot = 1;
+		bullet->Setballet(tmpisshot);
 		bullet->Setpos(tempPlayerpos);
+		
 	}
 
 	bullet->Update();
